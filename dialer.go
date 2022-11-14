@@ -4,7 +4,6 @@ import (
 	"crypto/tls"
 	"fmt"
 	"net"
-	"time"
 )
 
 // NewDialer returns an initialized Dialer
@@ -31,7 +30,6 @@ func (d *Dialer) Dial(addr string, timeout time.Duration) (conn net.Conn, retErr
 		conf := &tls.Config{
 			InsecureSkipVerify: d.skipVerify,
 		}
-		conn, retErr = tls.DialWithDialer(dialer, "tcp", addr, conf)
 	} else {
 		conn, retErr = dialer.Dial("tcp", addr)
 	}
